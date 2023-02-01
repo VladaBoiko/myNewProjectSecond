@@ -1,20 +1,93 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-
+import {
+  StyleSheet,
+  // Text,
+  View,
+  // TextInput,
+  // TouchableWithoutFeedback,
+  // Keyboard,
+  // KeyboardAvoidingView,
+  // Platform,
+  Alert,
+  // Button,
+  // Pressable,
+  ImageBackground,
+} from "react-native";
+import React, { useState } from "react";
+import RegisterForm from "./Screens/RegistrationScreen";
+import LoginForm from "./Screens/LoginScreen";
+const image = {
+  uri: "https://i.pinimg.com/originals/da/63/21/da6321cb6b094e012bd57dc7adb0a4ad.jpg",
+};
 export default function App() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // я знаю, що для логінізації потрібно свій стейт, в якому я збережу дані. Але в даний момент мені потрібно просто їх десь втримати
+  const nameHandler = (text) => setName(text);
+  const emailHandler = (text) => setEmail(text);
+  const passwordHandler = (text) => setPassword(text);
+  const onRegister = () => {
+    if (name.trim() !== "" && email.trim() !== "" && password.trim() !== "") {
+      console.log(`Your data:
+    name: ${name},
+    email: ${email},
+    password: ${password}.
+    `);
+      Alert.alert("Thanks for registration!");
+    }
+    Alert.alert("Enter your register information, mazafaka!");
+  };
+  const onLogin = () => {
+    if (email.trim() !== "" && password.trim() !== "") {
+      console.log(`Your data:
+    email: ${email},
+    password: ${password}.
+    `);
+      Alert.alert("Thanks for authorization!");
+    }
+    Alert.alert("Enter your login information, mazafaka!");
+  };
+
   return (
-    <View style={styles.container}>
-      <Text>Eduardo!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <ImageBackground source={image} resizeMode="cover" style={styles.image} />
+      <View style={styles.container}>
+        <RegisterForm
+          nameHandler={nameHandler}
+          emailHandler={emailHandler}
+          passwordHandler={passwordHandler}
+          onRegister={onRegister}
+          state={(name, email, password)}
+        />
+        {/* <LoginForm
+          emailHandler={emailHandler}
+          passwordHandler={passwordHandler}
+          onLogin={onLogin}
+          state={(email, password)}
+        /> */}
+      </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#ecf0f1",
+  },
+  image: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  text: {
+    color: "white",
+    fontSize: 42,
+    lineHeight: 84,
+    fontWeight: "bold",
+    textAlign: "center",
+    backgroundColor: "#000000c0",
   },
 });
