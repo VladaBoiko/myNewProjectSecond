@@ -1,17 +1,4 @@
-import {
-  StyleSheet,
-  // Text,
-  View,
-  // TextInput,
-  // TouchableWithoutFeedback,
-  // Keyboard,
-  // KeyboardAvoidingView,
-  // Platform,
-  Alert,
-  // Button,
-  // Pressable,
-  ImageBackground,
-} from "react-native";
+import { StyleSheet, View, Alert, ImageBackground } from "react-native";
 import React, { useState } from "react";
 import RegisterForm from "./Screens/RegistrationScreen";
 import LoginForm from "./Screens/LoginScreen";
@@ -28,25 +15,27 @@ export default function App() {
   const emailHandler = (text) => setEmail(text);
   const passwordHandler = (text) => setPassword(text);
   const onRegister = () => {
-    if (name.trim() !== "" && email.trim() !== "" && password.trim() !== "") {
-      console.log(`Your data:
+    if (name.trim() === "" && email.trim() === "" && password.trim() === "") {
+      Alert.alert("Enter your register information!");
+      return;
+    }
+    console.log(`Your data:
     name: ${name},
     email: ${email},
     password: ${password}.
     `);
-      Alert.alert("Thanks for registration!");
-    }
-    Alert.alert("Enter your register information, mazafaka!");
+    Alert.alert("Thanks for registration!");
   };
   const onLogin = () => {
-    if (email.trim() !== "" && password.trim() !== "") {
-      console.log(`Your data:
+    if (email.trim() === "" && password.trim() === "") {
+      Alert.alert("Enter your login information!");
+      return;
+    }
+    console.log(`Your data:
     email: ${email},
     password: ${password}.
     `);
-      Alert.alert("Thanks for authorization!");
-    }
-    Alert.alert("Enter your login information, mazafaka!");
+    Alert.alert("Thanks for authorization!");
   };
 
   return (
