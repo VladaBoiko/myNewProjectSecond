@@ -10,6 +10,8 @@ import {
   Image,
   Pressable,
 } from "react-native";
+import Plus from "../assets/add.svg";
+
 export default function LoginForm({
   emailHandler,
   passwordHandler,
@@ -18,51 +20,55 @@ export default function LoginForm({
 }) {
   const { email, password } = state;
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-      >
-        <View style={styles.form}>
-          <View style={styles.photobox}>
-            <Image
-              style={styles.tinyLogo}
-              source={require("../assets/add.png")}
-            />
-          </View>
-
-          <Text style={styles.title}>Log in</Text>
-
-          <TextInput
-            value={email}
-            onChangeText={emailHandler}
-            placeholder="email"
-            style={styles.input}
-          />
-          <View>
+    <View style={styles.container}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
+          <View style={styles.form}>
+            <View style={styles.photobox}>
+              <Plus width={25} height={25} style={styles.tinyLogo} />
+            </View>
+            <Text style={styles.title}>Log in</Text>
             <TextInput
-              value={password}
-              onChangeText={passwordHandler}
-              placeholder="password"
+              value={email}
+              onChangeText={emailHandler}
+              placeholder="email"
               style={styles.input}
             />
-            <Pressable /* onPress={onRegister} */ style={styles.cheat}>
-              <Text style={styles.cheatText}>Show</Text>
+            <View>
+              <TextInput
+                value={password}
+                onChangeText={passwordHandler}
+                placeholder="password"
+                style={styles.input}
+              />
+              <Pressable /* onPress={onRegister} */ style={styles.cheat}>
+                <Text style={styles.cheatText}>Show</Text>
+              </Pressable>
+            </View>
+            <Pressable onPress={onLogin} style={styles.button}>
+              <Text style={styles.text}>Log in</Text>
+            </Pressable>
+            <Pressable /* onPress={} */ style={styles.already}>
+              <Text style={styles.cheatText}>
+                Don`t have an account? Log in
+              </Text>
             </Pressable>
           </View>
-
-          <Pressable onPress={onLogin} style={styles.button}>
-            <Text style={styles.text}>Log in</Text>
-          </Pressable>
-          <Pressable /* onPress={} */ style={styles.already}>
-            <Text style={styles.cheatText}>Don`t have an account? Log in</Text>
-          </Pressable>
-        </View>
-      </KeyboardAvoidingView>
-    </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
+      </TouchableWithoutFeedback>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#ecf0f1",
+  },
   form: {
     width: 360,
     height: 610,

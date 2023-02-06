@@ -7,9 +7,9 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  Image,
   Pressable,
 } from "react-native";
+import Plus from "../../assets/add.svg";
 export default function RegisterForm({
   nameHandler,
   emailHandler,
@@ -19,65 +19,71 @@ export default function RegisterForm({
 }) {
   const { name, email, password } = state;
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-      >
-        <View style={styles.form}>
-          <View style={styles.photobox}>
-            <Image
-              style={styles.tinyLogo}
-              source={require("../assets/add.png")}
-            />
-          </View>
+    <View style={styles.container}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
+          <View style={styles.form}>
+            <View style={styles.photobox}>
+              <Plus width={25} height={25} style={styles.tinyLogo} />
+            </View>
 
-          <Text style={styles.title}>Register</Text>
+            <Text style={styles.title}>Register</Text>
 
-          <TextInput
-            value={name}
-            onChangeText={nameHandler}
-            placeholder="name"
-            style={styles.input}
-          />
-          <TextInput
-            value={email}
-            onChangeText={emailHandler}
-            placeholder="email"
-            style={styles.input}
-          />
-          <View>
             <TextInput
-              value={password}
-              onChangeText={passwordHandler}
-              placeholder="password"
+              value={name}
+              onChangeText={nameHandler}
+              placeholder="name"
               style={styles.input}
             />
-            <Pressable /* onPress={onRegister} */ style={styles.cheat}>
-              <Text style={styles.cheatText}>Show</Text>
+            <TextInput
+              value={email}
+              onChangeText={emailHandler}
+              placeholder="email"
+              style={styles.input}
+            />
+            <View>
+              <TextInput
+                value={password}
+                onChangeText={passwordHandler}
+                placeholder="password"
+                style={styles.input}
+              />
+              <Pressable /* onPress={onRegister} */ style={styles.cheat}>
+                <Text style={styles.cheatText}>Show</Text>
+              </Pressable>
+            </View>
+
+            <Pressable onPress={onRegister} style={styles.button}>
+              <Text style={styles.text}>Register</Text>
+            </Pressable>
+            <Pressable /* onPress={} */ style={styles.already}>
+              <Text style={styles.cheatText}>Have an account? Log in</Text>
             </Pressable>
           </View>
-
-          <Pressable onPress={onRegister} style={styles.button}>
-            <Text style={styles.text}>Register</Text>
-          </Pressable>
-          <Pressable /* onPress={} */ style={styles.already}>
-            <Text style={styles.cheatText}>Have an account? Log in</Text>
-          </Pressable>
-        </View>
-      </KeyboardAvoidingView>
-    </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
+      </TouchableWithoutFeedback>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#ecf0f1",
+  },
   form: {
     width: 360,
-    height: 649,
+    height: 549,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
+    paddingTop: 90,
   },
   photobox: {
     width: 120,
@@ -95,6 +101,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: 105,
     bottom: 10,
+    fill: "black",
   },
   title: {
     marginBottom: 32,
