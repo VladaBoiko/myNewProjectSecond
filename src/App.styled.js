@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import { Text, View, Pressable } from "react-native";
-import LogOut from "../../assets/log-out.svg";
+// import LogOut from "../../assets/log-out.svg";
 export const MainBox = styled(View)`
   width: 100%;
   height: 100%;
 
   background-color: "white";
 `;
-export const Icon = styled(LogOut)`
-  margin-left: auto;
-`;
+// export const Icon = styled(LogOut)`
+//   margin-left: auto;
+// `;
 export const PublicationsBox = styled(View)`
   width: 100%;
   padding: 0 10px;
@@ -24,7 +24,6 @@ export const HeaderBox = styled(View)`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background-color: white;
   align-items: flex-end;
   padding: 11px 10px;
 `;
@@ -48,9 +47,6 @@ export const FooterBox = styled(View)`
   background-color: white;
 `;
 export const Button = styled(Pressable)``;
-export const HeaderButton = styled(Pressable)`
-  margin-left: auto;
-`;
 export const PlusButton = styled(Pressable)`
   width: 70px;
   height: 40px;
@@ -61,6 +57,6 @@ export const PlusButton = styled(Pressable)`
   justify-content: center;
   align-items: center;
   padding: 11px 10px;
-  background-color: #ff6c00;
-  margin: 0 31px;
+  background-color: transparent;
+  margin-left: auto;
 `;

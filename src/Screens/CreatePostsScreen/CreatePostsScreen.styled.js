@@ -1,27 +1,27 @@
 import styled from "styled-components";
 import { Text, View, Pressable } from "react-native";
-import LogOut from "../../assets/log-out.svg";
-export const MainBox = styled(View)`
-  width: 100%;
-  height: 100%;
-
-  background-color: "white";
+import Location from "../../assets/location.svg";
+export const LocationBox = styled(View)``;
+export const PublicationLocation = styled(Location)`
+  position: absolute;
+  top: 25%;
 `;
-
 export const PublicationsBox = styled(View)`
-  width: 100%;
-  height: 100%;
   padding: 32px 0;
 `;
 export const AddPhotobox = styled(View)`
-  width: 343px;
-  height: 240px;
+  width: 336px;
+  height: 200px;
   background-color: #e8e8e8;
   margin: 0 auto;
   border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10px;
+`;
+export const HeaderButton = styled(Pressable)`
+  margin-right: auto;
 `;
 export const IconBox = styled(View)`
   width: 60px;
@@ -37,7 +37,6 @@ export const TextContent = styled(Text)`
   font-size: 16px;
   line-height: 19px;
   color: #bdbdbd;
-  margin-left: 16px;
   margin-top: 10px;
 `;
 export const HeaderBox = styled(View)`
@@ -52,7 +51,7 @@ export const HeaderBox = styled(View)`
   padding: 11px 10px;
 `;
 export const Title = styled(Text)`
-  margin-left: auto;
+  /* margin-left: auto; */
   margin-right: auto;
   font-weight: bold;
   font-size: 17px;
@@ -61,40 +60,37 @@ export const Title = styled(Text)`
 `;
 export const FooterBox = styled(View)`
   width: 100%;
-  height: 83px;
-  position: absolute;
-  bottom: 0;
   border: 1px solid #e8e8e8;
-
-  display: flex;
-  flex-direction: column;
+  margin-top: 100px;
+  padding: 10px;
   justify-content: center;
-  padding: 11px 10px;
+  align-items: center;
 `;
-export const Button = styled(Pressable)``;
 export const PlusButton = styled(Pressable)`
-  width: 70px;
-  height: 40px;
-  border-radius: 20px;
-  padding-bottom: 11px;
+  width: 100%;
+  border-radius: 100px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 11px 10px;
-  background-color: #ff6c00;
-  margin: 0 31px;
+  padding: 16px;
+  background-color: #f6f6f6;
+  margin: 32px 0;
 `;
+export const ButtonText = styled(Text)`
+  font-size: 16px;
+  line-height: 19px;
 
-{
-  /* текст */
-}
-{
-  /* текст */
-}
-{
-  /* іконка текст */
-}
-{
-  /* кнопка */
-}
+  color: #bdbdbd;
+`;
+export const DeleteButton = styled(Pressable)`
+  width: 70px;
+
+  height: 40px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #f6f6f6;
+`;

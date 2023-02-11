@@ -1,36 +1,29 @@
 import React from "react";
 import {
   MainBox,
-  Title,
-  HeaderBox,
-  Icon,
   PublicationsBox,
   FooterBox,
   Button,
   PlusButton,
-  HeaderButton,
-} from "./Home.styled";
+} from "./MapScreen.styled";
+import MapPublicationBlock from "../../components/MapPublication/MapPublication";
 import { StyleSheet } from "react-native";
-import PublicationBlock from "../../components/Publication/Publication";
-import Grid from "../../assets/grid.svg";
+import { Title, HeaderBox, Icon, HeaderButton } from "../Home/Home.styled";
 import Plus from "../../assets/Union.svg";
 import User from "../../assets/user.svg";
-export default function HomeScreen({ navigation }) {
+export default function MapScreen({ navigation }) {
   return (
     <MainBox>
       <HeaderBox>
-        <Title>Publications</Title>
+        <Title>My publications</Title>
         <HeaderButton onPress={() => navigation.navigate("Registration")}>
           <Icon width={24} height={24} />
         </HeaderButton>
       </HeaderBox>
       <PublicationsBox>
-        <PublicationBlock navigation={navigation} />
+        <MapPublicationBlock navigation={navigation} />
       </PublicationsBox>
       <FooterBox style={styles.borders}>
-        <Button onPress={() => navigation.navigate("Map")}>
-          <Grid width={40} height={40} />
-        </Button>
         <PlusButton onPress={() => navigation.navigate("CreatePublication")}>
           <Plus width={13} height={13} />
         </PlusButton>

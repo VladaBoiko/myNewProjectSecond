@@ -7,6 +7,7 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
+  Image,
   Pressable,
   ImageBackground,
 } from "react-native";
@@ -14,16 +15,18 @@ import Plus from "../../assets/add.svg";
 const image = {
   uri: "https://i.pinimg.com/originals/da/63/21/da6321cb6b094e012bd57dc7adb0a4ad.jpg",
 };
-
-export default function RegisterForm({
-  nameHandler,
+import {
+  ProfileImage,
+  PhotoDelete,
+} from "../ProfileScreen/ProfileScreen.styled";
+export default function LoginForm({
   emailHandler,
   passwordHandler,
-  onRegister,
+  onLogin,
   state,
   navigation,
 }) {
-  const { name, email, password } = state;
+  const { email, password } = state;
   return (
     <>
       <ImageBackground source={image} resizeMode="cover" style={styles.image} />
@@ -34,15 +37,16 @@ export default function RegisterForm({
           >
             <View style={styles.form}>
               <View style={styles.photobox}>
+                <ProfileImage
+                  source={{
+                    uri: "http://www.mukachevo.net/Content/img/news/313/p_313592_1_slidertop2.jpg",
+                  }}
+                  alt="User avatar"
+                />
+                <PhotoDelete width={25} height={25} />
                 <Plus width={25} height={25} style={styles.tinyLogo} />
               </View>
-              <Text style={styles.title}>Register</Text>
-              <TextInput
-                value={name}
-                onChangeText={nameHandler}
-                placeholder="name"
-                style={styles.input}
-              />
+              <Text style={styles.title}>Log in</Text>
               <TextInput
                 value={email}
                 onChangeText={emailHandler}
@@ -64,13 +68,15 @@ export default function RegisterForm({
                 onPress={() => navigation.navigate("Profile")}
                 style={styles.button}
               >
-                <Text style={styles.text}>Register</Text>
+                <Text style={styles.text}>Log in</Text>
               </Pressable>
               <Pressable
-                onPress={() => navigation.navigate("Login")}
+                onPress={() => navigation.navigate("Registration")}
                 style={styles.already}
               >
-                <Text style={styles.cheatText}>Have an account? Log in</Text>
+                <Text style={styles.cheatText}>
+                  Don`t have an account? Sign up
+                </Text>
               </Pressable>
             </View>
           </KeyboardAvoidingView>
@@ -87,6 +93,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#ecf0f1",
   },
+  image: {
+    // width: "100%",
+    // height: "100%",
+    flex: 1,
+    justifyContent: "center",
+  },
   form: {
     width: 360,
     height: 749,
@@ -95,19 +107,14 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
-    paddingTop: 90,
   },
   photobox: {
     width: 120,
     height: 120,
-    borderWidth: 1,
-    borderColor: "#E8E8E8",
     borderRadius: 16,
     position: "absolute",
     top: -60,
-    backgroundColor: "#F6F6F6",
   },
-
   tinyLogo: {
     width: 25,
     height: 25,
@@ -132,10 +139,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#F6F6F6",
     borderRadius: 8,
   },
-  image: {
-    flex: 1,
-    justifyContent: "center",
-  },
   button: {
     alignItems: "center",
     justifyContent: "center",
@@ -156,6 +159,6 @@ const styles = StyleSheet.create({
   already: {
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 295,
+    marginBottom: 205,
   },
 });
