@@ -44,10 +44,12 @@ export default function PostScreen({ navigation }) {
           ></AddPhotoboxImage>
         </AddPhotobox>
         <TextBox>
-          <LocationText>
-            <Location width={24} height={24} />
-            <LocationTitle>Ivano-Frankivs'k Region, Ukraine</LocationTitle>
-          </LocationText>
+          <Pressable onPress={() => navigation.navigate("Location Map")}>
+            <LocationText>
+              <Location width={24} height={24} />
+              <LocationTitle>Ivano-Frankivs'k Region, Ukraine</LocationTitle>
+            </LocationText>
+          </Pressable>
           <ContentTextBox style={styles.bordersTitleContent}>
             <ContentTextTitle>Karpathian forest</ContentTextTitle>
           </ContentTextBox>

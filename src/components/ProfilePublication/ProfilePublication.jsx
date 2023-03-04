@@ -13,11 +13,11 @@ import {
 } from "./ProfilePublication.styled";
 import { Pressable } from "react-native";
 import React from "react";
-const publications = require("../../bd/publications.json");
+// const publications = require("../../bd/publications.json");
 import CommentIcon from "../../assets/comment_profile.svg";
 import LikeIcon from "../../assets/like.svg";
 import LocationIcon from "../../assets/location.svg";
-export default function PublicationBlock({ navigation }) {
+export default function PublicationBlock({ navigation, publications }) {
   return (
     <PublicationList
       data={publications}
@@ -44,10 +44,18 @@ export default function PublicationBlock({ navigation }) {
               <LikeIcon width={24} height={24} />
               <LikeText>{item.likes}</LikeText>
             </LikeBox>
-            <Location>
-              <LocationIcon width={24} height={24} />
-              <LocationText>{item.country}</LocationText>
-            </Location>
+            <Pressable
+              onPress={() =>
+                navigation.navigate("Location Map", {
+                  item,
+                })
+              }
+            >
+              <Location>
+                <LocationIcon width={24} height={24} />
+                <LocationText>{item.country}</LocationText>
+              </Location>
+            </Pressable>
           </ItemBox>
         </Item>
       )}

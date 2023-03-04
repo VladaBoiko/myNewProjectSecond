@@ -19,7 +19,6 @@ export default function RegisterForm({
   nameHandler,
   emailHandler,
   passwordHandler,
-  onRegister,
   state,
   navigation,
 }) {

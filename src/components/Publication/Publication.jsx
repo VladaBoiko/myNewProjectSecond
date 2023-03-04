@@ -8,8 +8,8 @@ import {
 } from "./Publication.styled";
 import React from "react";
 import { Pressable } from "react-native";
-const publications = require("../../bd/publications.json");
-export default function PublicationBlock({ navigation }) {
+// const publications = require("../../bd/publications.json");
+export default function PublicationBlock({ navigation, publications }) {
   return (
     <PublicationList
       data={publications}

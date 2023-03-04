@@ -22,7 +22,6 @@ import {
 export default function LoginForm({
   emailHandler,
   passwordHandler,
-  onLogin,
   state,
   navigation,
 }) {

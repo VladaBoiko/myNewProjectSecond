@@ -68,5 +68,8 @@ export const PlusButton = styled(Pressable)`
   padding: 11px 10px;
   background-color: #ff6c00;
   margin: 0 31px;
+`;
+export const ActiveButton = styled(Pressable)`
+  opacity: 0.3;
   margin-right: auto;
 `;

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Camera } from "expo-camera";
 import {
   StyleSheet,
   View,
@@ -6,59 +7,88 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   KeyboardAvoidingView,
-  Platform,
+  Image,
 } from "react-native";
+import * as Location from "expo-location";
 import {
   Title,
   HeaderBox,
   PublicationsBox,
   FooterBox,
   PlusButton,
-  AddPhotobox,
   IconBox,
-  TextContent,
   ButtonText,
   DeleteButton,
   PublicationLocation,
   LocationBox,
   HeaderButton,
 } from "./CreatePostsScreen.styled";
-
 import LeftArrow from "../../assets/arrow-left.svg";
-import Camera from "../../assets/camera.svg";
+import CameraIcon from "../../assets/camera.svg";
 import Trash from "../../assets/trash.svg";
-export default function CreatePostsScreen({
-  publicationName,
-  location,
-  publicationNameHandler,
-  publicationlocationHandler,
-  onAddPublication,
-  navigation,
-}) {
+export default function CreatePostsScreen({ navigation }) {
+  const [camera, setCamera] = useState(null);
+  const [img, setImg] = useState(null);
+  const [postName, setPostName] = useState("");
+  const [location, setLocation] = useState("");
+  const [locateData, setLocateData] = useState("");
+  const nameHandler = (text) => setPostName(text);
+  const locationHandler = (text) => setLocation(text);
+  const takePhoto = async () => {
+    const img = await camera.takePictureAsync();
+    setImg(img.uri);
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== "granted") {
+      console.log("Permission to access location was denied");
+    }
+
+    const postLocation = await Location.getCurrentPositionAsync();
+    const coords = {
+      latitude: postLocation.coords.latitude,
+      longitude: postLocation.coords.longitude,
+    };
+    setLocateData(coords);
+  };
+
+  const sendPhoto = async () => {
+    navigation.navigate("Profile", {
+      img,
+      postName,
+      location,
+      locateData,
+    });
+  };
+  console.log(camera);
   return (
-    <View style={styles.container}>
-      <HeaderBox>
-        <HeaderButton onPress={() => navigation.navigate("Profile")}>
-          <LeftArrow width={24} height={24} />
-        </HeaderButton>
-        <Title>Create publication</Title>
-      </HeaderBox>
-      <PublicationsBox>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <KeyboardAvoidingView
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
-          >
+    <KeyboardAvoidingView behavior="padding" style={styles.container}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.container}>
+          <HeaderBox>
+            <HeaderButton onPress={() => navigation.navigate("Profile")}>
+              <LeftArrow width={24} height={24} />
+            </HeaderButton>
+            <Title>Create publication</Title>
+          </HeaderBox>
+          <PublicationsBox>
             <View style={styles.form}>
-              <AddPhotobox>
-                <IconBox>
-                  <Camera width={24} height={24} />
+              <Camera style={styles.camera} ref={setCamera}>
+                {img && (
+                  <View style={styles.takePhotoContainer}>
+                    <Image
+                      source={{ uri: img }}
+                      style={{ height: 100, width: 100 }}
+                    />
+                  </View>
+                )}
+                <IconBox onPress={takePhoto}>
+                  <CameraIcon width={24} height={24} />
                 </IconBox>
-                <TextContent>Add your photo</TextContent>
-              </AddPhotobox>
+              </Camera>
+
               <View style={styles.formBox}>
                 <TextInput
-                  value={publicationName}
-                  onChangeText={publicationNameHandler}
+                  value={postName}
+                  onChangeText={nameHandler}
                   placeholder="Publication name"
                   style={styles.input}
                   placeholderTextColor={"#BDBDBD"}
@@ -66,7 +96,7 @@ export default function CreatePostsScreen({
                 <LocationBox>
                   <TextInput
                     value={location}
-                    onChangeText={publicationlocationHandler}
+                    onChangeText={locationHandler}
                     placeholder="Location"
                     style={styles.inputLocation}
                     placeholderTextColor={"#BDBDBD"}
@@ -74,20 +104,20 @@ export default function CreatePostsScreen({
                   <PublicationLocation width={24} height={24} />
                 </LocationBox>
 
-                <PlusButton>
+                <PlusButton onPress={sendPhoto}>
                   <ButtonText>Add publication</ButtonText>
                 </PlusButton>
               </View>
             </View>
-          </KeyboardAvoidingView>
-        </TouchableWithoutFeedback>
-      </PublicationsBox>
-      <FooterBox style={styles.borders}>
-        <DeleteButton>
-          <Trash width={24} height={24} />
-        </DeleteButton>
-      </FooterBox>
-    </View>
+          </PublicationsBox>
+          <FooterBox style={styles.borders}>
+            <DeleteButton>
+              <Trash width={24} height={24} />
+            </DeleteButton>
+          </FooterBox>
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -95,9 +125,29 @@ const styles = StyleSheet.create({
   borders: {
     borderBottomColor: "transparent",
   },
+  takePhotoContainer: {
+    position: "absolute",
+    top: 10,
+    left: 10,
+    borderColor: "#fff",
+    borderWidth: 1,
+    width: 100,
+    height: 100,
+  },
   formBox: {
     paddingLeft: 16,
     paddingRight: 16,
+  },
+  camera: {
+    width: "100%",
+    height: 232,
+    // backgroundColor: "#e8e8e8",
+    // margin: "0 auto",
+    // borderRadius: 8,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 10,
   },
   container: {
     height: "100%",

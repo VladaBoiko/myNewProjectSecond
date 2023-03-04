@@ -11,10 +11,10 @@ import {
 } from "./MapPublication.styled";
 import React from "react";
 import { Pressable } from "react-native";
-const publications = require("../../bd/publications.json");
+// const publications = require("../../bd/publications.json");
 import Comment from "../../assets/comment.svg";
 import LocationIcon from "../../assets/location.svg";
-export default function MapPublicationBlock({ navigation }) {
+export default function MapPublicationBlock({ navigation, publications }) {
   return (
     <PublicationList
       data={publications}

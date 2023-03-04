@@ -50,6 +50,10 @@ export const FooterBox = styled(View)`
   background-color: white;
 `;
 export const Button = styled(Pressable)``;
+export const ActiveButton = styled(Pressable)`
+  opacity: 0.3;
+`;
+
 export const PlusButton = styled(Pressable)`
   width: 70px;
   height: 40px;

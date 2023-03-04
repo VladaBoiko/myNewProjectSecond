@@ -7,7 +7,7 @@ export const PublicationLocation = styled(Location)`
   top: 25%;
 `;
 export const PublicationsBox = styled(View)`
-  padding: 32px 0;
+  /* padding: 32px 0; */
 `;
 export const AddPhotobox = styled(View)`
   width: 336px;
@@ -23,14 +23,16 @@ export const AddPhotobox = styled(View)`
 export const HeaderButton = styled(Pressable)`
   margin-right: auto;
 `;
-export const IconBox = styled(View)`
+export const IconBox = styled(Pressable)`
   width: 60px;
   height: 60px;
-  background-color: #ffffff;
+  background-color: #d4d4d42b;
   border-radius: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: auto;
+  margin-bottom: 10px;
 `;
 export const TextContent = styled(Text)`
   font-weight: 400;
@@ -61,7 +63,7 @@ export const Title = styled(Text)`
 export const FooterBox = styled(View)`
   width: 100%;
   border: 1px solid #e8e8e8;
-  margin-top: 100px;
+  margin-top: 132px;
   padding: 10px;
   justify-content: center;
   align-items: center;
@@ -74,14 +76,14 @@ export const PlusButton = styled(Pressable)`
   justify-content: center;
   align-items: center;
   padding: 16px;
-  background-color: #f6f6f6;
+  background-color: orange;
   margin: 32px 0;
 `;
 export const ButtonText = styled(Text)`
   font-size: 16px;
   line-height: 19px;
 
-  color: #bdbdbd;
+  color: white;
 `;
 export const DeleteButton = styled(Pressable)`
   width: 70px;

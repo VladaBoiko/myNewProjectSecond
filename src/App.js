@@ -1,123 +1,4 @@
-// import { StyleSheet, View, Alert, ImageBackground } from "react-native";
-// import React, { useState } from "react";
-// import RegisterForm from "./Screens/Register/RegistrationScreen";
-// import LoginForm from "./Screens/Login/LoginScreen";
-// import HomeScreen from "./Screens/Home/Home";
-// import MapScreen from "./Screens/MapScreen/MapScreen";
-// import CreatePostsScreen from "./Screens/CreatePostsScreen/CreatePostsScreen";
-// import PostScreen from "./Screens/PostScreen/PostScreen";
-// import CommentsScreen from "./Screens/CommentsScreen/CommentsScreen";
-// import ProfileScreen from "./Screens/ProfileScreen/ProfileScreen";
-// const image = {
-//   uri: "https://i.pinimg.com/originals/da/63/21/da6321cb6b094e012bd57dc7adb0a4ad.jpg",
-// };
-// export default function App() {
-//   const [name, setName] = useState("");
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [publicationName, setPublicationName] = useState("");
-//   const [location, setLocation] = useState("");
-//   // const [publicationName, setPublicationName] = useState("");
-//   // const [publicationlocation, setPublicationlocation] =
-//   //   useState("");
-
-//   // я знаю, що для логінізації потрібно свій стейт, в якому я збережу дані. Але в даний момент мені потрібно просто їх десь втримати
-//   const nameHandler = (text) => setName(text);
-//   const emailHandler = (text) => setEmail(text);
-//   const passwordHandler = (text) => setPassword(text);
-//   const publicationNameHandler = (text) => setPublicationName(text);
-//   const locationHandler = (text) => setLocation(text);
-//   const onRegister = () => {
-//     if (name.trim() === "" && email.trim() === "" && password.trim() === "") {
-//       Alert.alert("Enter your register information!");
-//       return;
-//     }
-//     console.log(`Your data:
-//     name: ${name},
-//     email: ${email},
-//     password: ${password}.
-//     `);
-//     Alert.alert("Thanks for registration!");
-//   };
-//   const onLogin = () => {
-//     if (email.trim() === "" && password.trim() === "") {
-//       Alert.alert("Enter your login information!");
-//       return;
-//     }
-//     console.log(`Your data:
-//     email: ${email},
-//     password: ${password}.
-//     `);
-//     Alert.alert("Thanks for authorization!");
-//   };
-//   const onAddPublication = () => {
-//     if (publicationName.trim() === "" && location.trim() === "") {
-//       Alert.alert("Enter all information!");
-//       return;
-//     }
-//     console.log(`Your data:
-//     Publication name: ${publicationName}.
-//     Location: ${location}.
-//     `);
-//     Alert.alert("Publish!");
-//   };
-
-//   return (
-//     <>
-//       <ImageBackground source={image} resizeMode="cover" style={styles.image} />
-
-//       <HomeScreen />
-//       {/* <RegisterForm
-//         nameHandler={nameHandler}
-//         emailHandler={emailHandler}
-//         passwordHandler={passwordHandler}
-//         onRegister={onRegister}
-//         state={(name, email, password)}
-//       /> */}
-//       {/* <LoginForm
-//         emailHandler={emailHandler}
-//         passwordHandler={passwordHandler}
-//         onLogin={onLogin}
-//         state={(email, password)}
-//       /> */}
-//       {/* <CreatePostsScreen
-//         publicationName={publicationName}
-//         location={location}
-//         publicationNameHandler={publicationNameHandler}
-//         publicationlocationHandler={locationHandler}
-//         onAddPublication={onAddPublication}
-//       /> */}
-//       {/* <PostScreen
-//         publicationName={publicationName}
-//         location={location}
-//         publicationNameHandler={publicationNameHandler}
-//         publicationlocationHandler={locationHandler}
-//         onAddPublication={onAddPublication}
-//       /> */}
-//       {/* <MapScreen /> */}
-//       {/* <CommentsScreen /> */}
-//       {/* <ProfileScreen /> */}
-//     </>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   image: {
-//     // width: "100%",
-//     // height: "100%",
-//     flex: 1,
-//     justifyContent: "center",
-//   },
-//   text: {
-//     color: "white",
-//     fontSize: 42,
-//     lineHeight: 84,
-//     fontWeight: "bold",
-//     textAlign: "center",
-//     backgroundColor: "#000000c0",
-//   },
-// });
-import { StyleSheet, View, Alert, ImageBackground, Button } from "react-native";
+import { StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -131,66 +12,28 @@ import CreatePostsScreen from "./Screens/CreatePostsScreen/CreatePostsScreen";
 import PostScreen from "./Screens/PostScreen/PostScreen";
 import CommentsScreen from "./Screens/CommentsScreen/CommentsScreen";
 import ProfileScreen from "./Screens/ProfileScreen/ProfileScreen";
-import LogOut from "./assets/log-out.svg";
-import { PlusButton } from "./App.styled";
-const image = {
-  uri: "https://i.pinimg.com/originals/da/63/21/da6321cb6b094e012bd57dc7adb0a4ad.jpg",
-};
+import LocationMapScreen from "./Screens/LocationMapScreen/LocationMapScreen";
 export default function App() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [publicationName, setPublicationName] = useState("");
   const [location, setLocation] = useState("");
-  // const [publicationName, setPublicationName] = useState("");
-  // const [publicationlocation, setPublicationlocation] =
-  //   useState("");
-
-  // я знаю, що для логінізації потрібно свій стейт, в якому я збережу дані. Але в даний момент мені потрібно просто їх десь втримати
   const nameHandler = (text) => setName(text);
   const emailHandler = (text) => setEmail(text);
   const passwordHandler = (text) => setPassword(text);
   const publicationNameHandler = (text) => setPublicationName(text);
   const locationHandler = (text) => setLocation(text);
-  const onRegister = () => {
-    if (name.trim() === "" && email.trim() === "" && password.trim() === "") {
-      Alert.alert("Enter your register information!");
-      return;
-    }
-    console.log(`Your data:
-    name: ${name},
-    email: ${email},
-    password: ${password}.
-    `);
-    Alert.alert("Thanks for registration!");
-  };
-  const onLogin = () => {
-    if (email.trim() === "" && password.trim() === "") {
-      Alert.alert("Enter your login information!");
-      return;
-    }
-    console.log(`Your data:
-    email: ${email},
-    password: ${password}.
-    `);
-    Alert.alert("Thanks for authorization!");
-  };
-  const onAddPublication = () => {
-    if (publicationName.trim() === "" && location.trim() === "") {
-      Alert.alert("Enter all information!");
-      return;
-    }
-    console.log(`Your data:
-    Publication name: ${publicationName}.
-    Location: ${location}.
-    `);
-    Alert.alert("Publish!");
-  };
 
   return (
     <>
       <NavigationContainer>
-        <MainStack.Navigator initialRouteName="My publications">
+        <MainStack.Navigator initialRouteName="CreatePublication">
+          <MainStack.Screen
+            name="Location Map"
+            component={LocationMapScreen}
+            options={{ headerShown: false }}
+          />
           <MainStack.Screen
             name="Registration"
             options={{ headerShown: false }}
@@ -200,7 +43,6 @@ export default function App() {
                 nameHandler={nameHandler}
                 emailHandler={emailHandler}
                 passwordHandler={passwordHandler}
-                onRegister={onRegister}
                 state={(name, email, password)}
               />
             )}
@@ -213,7 +55,6 @@ export default function App() {
                 {...props}
                 emailHandler={emailHandler}
                 passwordHandler={passwordHandler}
-                onLogin={onLogin}
                 state={(email, password)}
               />
             )}
@@ -244,9 +85,6 @@ export default function App() {
                 {...props}
                 publicationName={publicationName}
                 location={location}
-                publicationNameHandler={publicationNameHandler}
-                publicationlocationHandler={locationHandler}
-                onAddPublication={onAddPublication}
               />
             )}
           />
@@ -260,7 +98,7 @@ export default function App() {
                 location={location}
                 publicationNameHandler={publicationNameHandler}
                 publicationlocationHandler={locationHandler}
-                onAddPublication={onAddPublication}
+                // onAddPublication={onAddPublication}
               />
             )}
           />

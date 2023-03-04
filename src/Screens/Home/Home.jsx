@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   MainBox,
   Title,
@@ -12,10 +12,19 @@ import {
 } from "./Home.styled";
 import { StyleSheet } from "react-native";
 import PublicationBlock from "../../components/Publication/Publication";
+const publications = require("../../bd/publications.json");
 import Grid from "../../assets/grid.svg";
 import Plus from "../../assets/Union.svg";
 import User from "../../assets/user.svg";
-export default function HomeScreen({ navigation }) {
+export default function HomeScreen({ navigation, route }) {
+  const [posts, setPosts] = useState(publications);
+  // console.log(posts);
+
+  useEffect(() => {
+    if (route.params) {
+      setPosts((prevState) => [route.params, ...prevState]);
+    }
+  }, [route.params]);
   return (
     <MainBox>
       <HeaderBox>
@@ -25,10 +34,10 @@ export default function HomeScreen({ navigation }) {
         </HeaderButton>
       </HeaderBox>
       <PublicationsBox>
-        <PublicationBlock navigation={navigation} />
+        <PublicationBlock navigation={navigation} publications={posts} />
       </PublicationsBox>
       <FooterBox style={styles.borders}>
-        <Button onPress={() => navigation.navigate("Map")}>
+        <Button onPress={() => navigation.navigate("My publications")}>
           <Grid width={40} height={40} />
         </Button>
         <PlusButton onPress={() => navigation.navigate("CreatePublication")}>
