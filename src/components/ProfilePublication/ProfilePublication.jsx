@@ -53,7 +53,7 @@ export default function PublicationBlock({ navigation, publications }) {
             >
               <Location>
                 <LocationIcon width={24} height={24} />
-                <LocationText>{item.country}</LocationText>
+                <LocationText>{item.location}</LocationText>
               </Location>
             </Pressable>
           </ItemBox>
